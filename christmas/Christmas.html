@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Celebration</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #a20101, #cf061a);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .napis {
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px 0;
+            z-index: 10;
+        }
+
+        h2 {
+            margin: 0;
+            padding: 20px;
+            font-size: 2rem;
+            color: white;
+            text-shadow: 7px 10px 12px rgba(5, 3, 0, 0.6);
+        }
+
+        .tree-line {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 20%;
+            background: url('tree.jpg') no-repeat center;
+            background-size: cover;
+        }
+
+        /* Circle style */
+        .circle {
+            position: absolute;
+            top: 20%; /* Position the circle slightly below the top */
+            left: 50%; /* Center horizontally */
+            width: 250px; /* Size of the circle */
+            height: 250px; /* Size of the circle */
+            background-color: #fffae4; /* Bright yellow color */
+            border-radius: 50%; /* Makes the element circular */
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8); /* Adds a glowing effect */
+            transform: translateX(-50%); /* Centers the circle exactly */
+            z-index: 5; /* Ensures it's above other content */
+        }
+
+        /* Animated Santa over the circle */
+        .animated-santa {
+            position: absolute;
+            top: 10%; /* Move Santa above the circle */
+            left: 50%; /* Center horizontally */
+            width: 250px; /* Adjust the size of the Santa */
+            height: 150px; /* Adjust the size of the Santa */
+            background: url('santa.png'); /* Ensure you have the 'santa.png' image */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain; /* Ensures the Santa fits within the defined size */
+            animation: animate 5s ease-in-out infinite; /* Animation for movement */
+        }
+
+        @keyframes animate {
+            0%, 100% {
+                transform: translateX(-50%) translateY(-25px); /* Move Santa up */
+            }
+            50% {
+                transform: translateX(-50%) translateY(25px); /* Move Santa down */
+            }
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Circle and Santa -->
+    <div class="circle">
+        <div class="animated-santa"></div>
+    </div>
+
+    <!-- Festive Greeting -->
+    <div class="napis">
+        <h2>Wszystkiego najlepszego od Pawła wraz z rodziną !!</h2>
+    </div>
+
+    <!-- Christmas Tree -->
+    <div class="tree-line">
+        <img src="tree.png" alt="Christmas Tree">
+    </div>
+
+    <script>
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            const size = Math.random() * 10 + 5;
+
+            snowflake.classList.add('snowflake');
+            snowflake.style.width = `${size}px`;
+            snowflake.style.height = `${size}px`;
+            snowflake.style.left = `${Math.random() * 100}vw`;
+
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 10000);
+        }
+
+        setInterval(createSnowflake, 100); // Create snowflakes periodically
+    </script>
+</body>
+</html>
