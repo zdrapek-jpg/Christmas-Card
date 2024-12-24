@@ -3,17 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,">
-    <meta property="og:title" content="Christmas" />
-  <meta property="og:description" content="A brief description of your link." />
-  <meta property="og:image" content="https://zdrapek-jpg.github.io/Christmas-Card/santa.png" />
-  <meta property="og:url" content="https://zdrapek-jpg.github.io/Christmas-Card/Christmas.html" />
     <title>Christmas Celebration</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         html, body {
             overflow: hidden;  /* Prevents scrolling and resizing */
             width: 100%;
@@ -167,6 +158,10 @@
     </style>
 </head>
 <body>
+    <audio id="backgroundMusic" loop>
+        <source src="wew.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     <!-- Circle and Santa -->
     <div class="circle">
@@ -202,6 +197,24 @@
         }
 
         setInterval(createSnowflake, 100);
+
+        const audio = document.getElementById('backgroundMusic');
+
+        function playMusic() {
+            audio.play()
+                .then(() => {
+                    console.log('Music is playing.');
+                })
+                .catch(error => {
+                    console.error('Music could not start automatically.', error);
+                });
+
+            // Remove the event listener after first interaction
+            document.removeEventListener('click', playMusic);
+        }
+
+        // Add click or touch listener to trigger audio
+        document.addEventListener('click', playMusic);
     </script>
 </body>
 </html>
