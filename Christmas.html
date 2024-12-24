@@ -4,13 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="Christmas Celebration with Santa">
-    <meta property="og:description" content="Join in the Christmas celebration with Santa, snowfall, and festive fun!">
-    <meta property="og:image" content="path_to_your_image/santa_image.jpg"> <!-- Replace with actual image path -->
-    <meta property="og:url" content="https://yourwebsite.com"> <!-- Replace with your website URL -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Christmas Celebration with Santa">
-    <meta name="twitter:description" content="Join in the Christmas celebration with Santa, snowfall, and festive fun!">
-    <meta name="twitter:image" content="santa.png"> <!-- Replace with actual image path -->
 
     <title>Christmas Celebration</title>
     <style>
@@ -197,26 +190,7 @@
             }, 10000);
         }
 
-        setInterval(createSnowflake, 100);
-
-        // Modal Logic
-        const openModalBtn = document.getElementById("openModalBtn");
-        const closeModalBtn = document.getElementById("closeModalBtn");
-        const modal = document.getElementById("santaModal");
-
-        openModalBtn.onclick = function() {
-            modal.style.display = "block";
-        }
-
-        closeModalBtn.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
+        setInterval(createSnowflake, 100)
     </script>
 </body>
 </html>
