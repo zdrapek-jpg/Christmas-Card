@@ -6,15 +6,14 @@
     <meta property="og:title" content="Christmas Celebration with Santa">
     <meta property="og:description" content="Join in the Christmas celebration with Santa, snowfall, and festive fun!">
     <meta property="og:image" content="path_to_your_image/santa_image.jpg"> <!-- Replace with actual image path -->
-    <meta property="og:url" content="https://zdrapek-jpg.github.io/Christmas-Card/Christmas.html"> <!-- Replace with your website URL -->
+    <meta property="og:url" content="https://yourwebsite.com"> <!-- Replace with your website URL -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Christmas Celebration with Santa">
     <meta name="twitter:description" content="Join in the Christmas celebration with Santa, snowfall, and festive fun!">
-    <meta name="twitter:image" content="santa_image.png"> <!-- Replace with actual image path -->
+    <meta name="twitter:image" content="santa.png"> <!-- Replace with actual image path -->
 
     <title>Christmas Celebration</title>
     <style>
-        /* Reset some default styles */
         * {
             margin: 0;
             padding: 0;
@@ -26,7 +25,7 @@
             font-family: 'Arial', sans-serif;
             height: 100vh;
             overflow: hidden;
-            background: linear-gradient(to bottom, #a20101, #a20101);
+            background: linear-gradient(to bottom, #a20101, #cf061a);
             position: relative;
             display: flex;
             align-items: center;
@@ -34,7 +33,6 @@
             text-align: center;
         }
 
-        /* Text styling */
         .napis {
             text-align: center;
             position: absolute;
@@ -49,35 +47,29 @@
         h1 {
             margin: 0;
             padding: 20px;
-            font-size: 6vw; /* Use viewport width for responsiveness */
+            font-size: 6vw;
             color: white;
             text-shadow: 7px 10px 12px rgba(5, 3, 0, 0.6);
         }
 
         .tree-line {
             position: absolute;
-            bottom: 10%;
+            bottom: 0;
             width: 100%;
-            height: 40%; /* Use viewport height to make it responsive */
+            height: 25vh; /* Use viewport height to make it responsive */
             background: url('tree.jpg') no-repeat center center;
             background-size: cover;
-        }
-        /* Optional: You can also add a media query for smaller screens */
-        @media (max-width: 768px) {
-            .tree-line {
-                height: 30vh; /* Increase the height on smaller screens if needed */
-            }
         }
 
         /* Circle style */
         .circle {
             position: absolute;
-            top: 65vh; /* Set it based on viewport height */
+            top: 65vh;
             left: 50%;
-            width: 25vw; /* Responsive circle size */
-            height: 25vw; /* Make it a perfect circle */
-            max-width: 250px; /* Limit size on larger screens */
-            max-height: 250px; /* Limit size on larger screens */
+            width: 25vw;
+            height: 25vw;
+            max-width: 250px;
+            max-height: 250px;
             background-color: #fffae4;
             border-radius: 50%;
             box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
@@ -85,14 +77,13 @@
             z-index: 5;
         }
 
-        /* Animated Santa inside the circle */
+        /* Animated Santa over the circle */
         .animated-santa {
             position: absolute;
-            top: 10%; /* Keep Santa inside the circle */
+            top: 10%;
             left: 50%;
-            width: 60%; /* Responsive size */
-            height: auto;
-            max-width: 150px; /* Limit size */
+            width: 250px;
+            height: 150px;
             background: url('santa.png');
             background-position: center;
             background-repeat: no-repeat;
@@ -102,13 +93,53 @@
 
         @keyframes animate {
             0%, 100% {
-                transform: translateX(-50%) translateY(-20px);
+                transform: translateX(-50%) translateY(-25px);
             }
             50% {
-                transform: translateX(-50%) translateY(20px);
+                transform: translateX(-50%) translateY(25px);
             }
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 15;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .modal-content img {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .close-btn {
+            margin-top: 10px;
+            padding: 5px 15px;
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            background-color: #e60000;
+        }
+
+        /* Snowflake animation */
         .snowflake {
             position: absolute;
             top: -10px;
@@ -128,44 +159,14 @@
                 opacity: 1;
             }
         }
-
-        /* Media Query for smaller devices */
-        @media (max-width: 768px) {
-            .circle {
-                top: 55vh;
-                width: 40vw;
-                height: 40vw;
-            }
-
-            h1 {
-                font-size: 8vw;
-            }
-
-            .animated-santa {
-                width: 50%;
-            }
-        }
-
-        /* Media Query for very small devices */
-        @media (max-width: 480px) {
-            .circle {
-                top: 50vh;
-                width: 50vw;
-                height: 50vw;
-            }
-
-            h1 {
-                font-size: 10vw;
-            }
-
-            .animated-santa {
-                width: 60%;
-            }
-        }
-
     </style>
 </head>
 <body>
+
+    <!-- Button to Open Modal (Santa) -->
+    <button id="openModalBtn" style="position: absolute; top: 80%; z-index: 10; padding: 10px 20px; background-color: #ff0000; color: white; border: none; font-size: 1.5rem; cursor: pointer;">See Santa</button>
+
+   
 
     <!-- Circle and Santa -->
     <div class="circle">
@@ -182,6 +183,7 @@
     </div>
 
     <script>
+        // Snowflake Creation
         function createSnowflake() {
             const snowflake = document.createElement('div');
             const size = Math.random() * 10 + 5;
@@ -198,7 +200,26 @@
             }, 10000);
         }
 
-        setInterval(createSnowflake, 100); // Create snowflakes periodically
+        setInterval(createSnowflake, 100);
+
+        // Modal Logic
+        const openModalBtn = document.getElementById("openModalBtn");
+        const closeModalBtn = document.getElementById("closeModalBtn");
+        const modal = document.getElementById("santaModal");
+
+        openModalBtn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        closeModalBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 </body>
 </html>
